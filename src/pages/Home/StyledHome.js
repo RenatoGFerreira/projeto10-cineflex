@@ -14,6 +14,21 @@ export const ScreenContainer = styled.div`
 `
 
 export const Lista = styled.div`
-    background-color: #000;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 `
 
+export const Carregando = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px;
+    text-align: center;
+    color: #000;
+    margin-top: 30px;
+    padding-top: 70px;
+`
