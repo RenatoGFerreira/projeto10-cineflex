@@ -1,9 +1,15 @@
-import { ScreenContainer } from "./StyleSessionCard";
+import { ScreenContainer, ButtonHorario } from "./StyleSessionCard";
 
-export default function SessionCard() {
+export default function SessionCard({ movie }) {
+
+    const { weekday, date, showtimes } = movie
     return (
         <ScreenContainer>
-            <h1>Cardzinho</h1>
+            {weekday} - {date}
+
+            <ButtonHorario>
+                {showtimes.map((i) => <button key={i.id}>{i.name}</button>)}
+            </ButtonHorario>
         </ScreenContainer>
     )
 }

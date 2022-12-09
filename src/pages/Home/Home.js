@@ -35,8 +35,6 @@ export default function Home() {
                             <HomeCard
                             title={filme.title}
                             posterURL={filme.posterURL}
-                            overview={filme.overview}
-                            releaseDate={filme.releaseDate}
                         />
                         </Link>
                         ))

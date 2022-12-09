@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 
-
 export const ScreenContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -17,8 +16,9 @@ export const ScreenContainer = styled.div`
 `
 
 export const ListContainer = styled.div`
-border: 1px solid blue;
-margin-top: 30px;
+    width: 100%;
+    margin-left: 25px;
+    margin-top: 30px;
 `
 
 
