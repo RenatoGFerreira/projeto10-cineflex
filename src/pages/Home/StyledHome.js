@@ -10,6 +10,9 @@ export const ScreenContainer = styled.div`
     color: #000;
     margin-top: 30px;
     padding-top: 70px;
+    h1{
+        text-transform: uppercase;
+    }
 
 `
 

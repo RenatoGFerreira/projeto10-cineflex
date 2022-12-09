@@ -1,4 +1,4 @@
-import { ScreenContainer, PosterMovie } from "./StyledMovieCard"
+import { ScreenContainer, PosterMovie } from "./StyledHomeCard"
 
 export default function MovieCard({posterURL, title}){
     return(

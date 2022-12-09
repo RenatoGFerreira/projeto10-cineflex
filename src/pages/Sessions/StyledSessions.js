@@ -11,6 +11,9 @@ export const ScreenContainer = styled.div`
     color: #000;
     margin-top: 30px;
     padding-top: 70px;
+    h1{
+        text-transform: uppercase;
+    }
 `
 
 export const ListContainer = styled.div`
@@ -19,17 +22,3 @@ margin-top: 30px;
 `
 
 
-// const PageContainer = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     font-family: 'Roboto';
-//     font-size: 24px;
-//     text-align: center;
-//     color: ${textColor};
-//     margin-top: 30px;
-//     padding-bottom: 120px;
-//     padding-top: 70px;
-// `
-// const ListContainer = styled.div`
-//     margin-top: 30px;
-// `

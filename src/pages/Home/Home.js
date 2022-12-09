@@ -2,7 +2,8 @@ import { ScreenContainer, Lista, Carregando } from "./StyledHome"
 import { useEffect, useState } from "react"
 import { URL } from "../../constants/URL"
 import axios from "axios"
-import MovieCard from "../../components/MovieCard/MovieCard"
+import HomeCard from "../../components/HomeCard/HomeCard"
+import { Link } from "react-router-dom"
 
 export default function Home() {
 
@@ -27,16 +28,19 @@ export default function Home() {
     return (
         <>
             <ScreenContainer>
-                Selecione o Filme
+                <h1>selecione o filme</h1>
                 <Lista>
                     {movie.map((filme) => (
-                        <MovieCard
-                            key={filme.id}
+                        <Link to={`/sessoes/${filme.id}`} key={filme.id}>
+                            <HomeCard
                             title={filme.title}
                             posterURL={filme.posterURL}
                             overview={filme.overview}
                             releaseDate={filme.releaseDate}
-                        />))}
+                        />
+                        </Link>
+                        ))
+                    }
                 </Lista>
             </ScreenContainer>
         </>
