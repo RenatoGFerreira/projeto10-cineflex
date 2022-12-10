@@ -1,8 +1,12 @@
 import { ScreenContainer } from "./StyledSuccess"
-export default function Success(){
-    return(
+import { Link } from "react-router-dom"
+
+export default function Success() {
+    return (
         <ScreenContainer>
-        Success
+            <Link to="/">
+                <button>Voltar para Home</button>
+            </Link>
         </ScreenContainer>
     )
 }

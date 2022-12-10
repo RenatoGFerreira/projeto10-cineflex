@@ -11,3 +11,10 @@ export const ScreenContainer = styled.div`
     margin-top: 30px;
     padding-top: 70px;
 `
+
+export const SeatsSpace = styled.div`
+    border: 1px solid red;
+`
+export const Formulary = styled.div`
+    border: 1px solid blue;
+`
