@@ -17,7 +17,6 @@ export const ScreenContainer = styled.div`
 
 export const ListContainer = styled.div`
     width: 100%;
-    margin-left: 25px;
     margin-top: 30px;
 `
 

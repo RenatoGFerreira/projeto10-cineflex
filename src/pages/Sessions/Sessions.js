@@ -9,7 +9,7 @@ export default function Sessions() {
     const filme = {
         weekday: "Segunda-Feira",
         date: "12/12/2022",
-        showtimes: [{name: "01:00"}, {name: "02:00"}],
+        showtimes: [{name: "01:00"}, {name: "02:00"}, {name:"06:00"}],
         posterURL: {imagem},
         title: "Shrek"
     }

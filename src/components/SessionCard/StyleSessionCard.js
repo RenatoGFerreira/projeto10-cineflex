@@ -4,6 +4,10 @@ export const ScreenContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    h1{
+        text-transform: capitalize;
+        margin-left: 25px;
+    }
 `
 
 export const ButtonHorario = styled.div`
@@ -11,9 +15,10 @@ export const ButtonHorario = styled.div`
     flex-direction: row;
     align-items: flex-start;
     margin: 15px 0;
+    margin-left: 25px;
 
     button{
-        margin-right: 25px;
+        margin-right: 15px;
         height: 43px;
         background: #E8833A;
         border-radius: 3px;
