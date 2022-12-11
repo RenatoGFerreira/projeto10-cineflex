@@ -1,4 +1,4 @@
-import { ScreenContainer, SeatsSpace, Formulary } from "./StyledSeats";
+import { ScreenContainer, SeatsSpace, Formulary, CircleContainer, Circle, IndividualCircle } from "./StyledSeats";
 import Footer from "../../components/Footer/Footer";
 import imagem from "../../assets/exemplo.jpg"
 
@@ -7,8 +7,8 @@ export default function Seats() {
     const filme = {
         weekday: "Segunda-Feira",
         date: "12/12/2022",
-        showtimes: [{name: "01:00"}, {name: "02:00"}, {name:"06:00"}],
-        posterURL: {imagem},
+        showtimes: [{ name: "01:00" }, { name: "02:00" }, { name: "06:00" }],
+        posterURL: { imagem },
         title: "Shrek"
     }
 
@@ -18,15 +18,29 @@ export default function Seats() {
             <SeatsSpace>
                 assento1, 2,3,4,5,6
             </SeatsSpace>
+            <CircleContainer>
+                <IndividualCircle>
+                    <Circle /> 
+                    Selecionado
+                </IndividualCircle>
+                <IndividualCircle>
+                    <Circle /> 
+                    Disponível
+                </IndividualCircle>
+                <IndividualCircle>
+                    <Circle /> 
+                    Indisponível
+                </IndividualCircle>
+            </CircleContainer>
             <Formulary>
                 Nome do Comprador:
-                <input/>
+                <input />
                 CPF do Comprador:
-                <input/>
+                <input />
                 <button>Reservar assentos</button>
             </Formulary>
-            
-            <Footer movie={filme}/>
+
+            <Footer movie={filme} />
         </ScreenContainer>
     )
 }

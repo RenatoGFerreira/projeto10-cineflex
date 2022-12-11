@@ -5,7 +5,7 @@ export const ScreenContainer = styled.div`
     flex-direction: row;
     align-items: center;
     position: fixed;
-    height: 67px;
+    height: 80px;
     width: 100%;
     background-color: #dfe6ed;
     position: fixed;
@@ -22,6 +22,11 @@ export const Poster = styled.div`
     align-items: center;
     justify-content: center;
     background-color: white;
+    img{
+        width: 50px;
+        height: 70px;
+        padding: 5px;
+    }
 `
 
 export const Title = styled.div`
