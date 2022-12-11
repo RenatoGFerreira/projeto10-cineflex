@@ -22,6 +22,7 @@ export const Poster = styled.div`
     align-items: center;
     justify-content: center;
     background-color: white;
+    margin-left: 10px;
     img{
         width: 50px;
         height: 70px;
@@ -33,4 +34,5 @@ export const Title = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-left: 20px;
 `

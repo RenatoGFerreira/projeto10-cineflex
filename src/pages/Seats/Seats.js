@@ -1,14 +1,15 @@
 import { ScreenContainer, SeatsSpace, Formulary, CircleContainer, Circle, IndividualCircle, Carregando } from "./StyledSeats";
 import Footer from "../../components/Footer/Footer";
-import imagem from "../../assets/exemplo.jpg"
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SeatsCard from "../../components/SeatsCard/SeatsCard";
 
 export default function Seats() {
 
     const { idSessao } = useParams()
     const [session, setSession] = useState(null)
+
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`)
@@ -17,26 +18,28 @@ export default function Seats() {
 
     }, [])
 
-    const filme = {
-        weekday: "Segunda-Feira",
-        date: "12/12/2022",
-        showtimes: [{ name: "01:00" }, { name: "02:00" }, { name: "06:00" }],
-        posterURL: { imagem },
-        title: "Shrek"
-    }
 
-    console.log(session)
 
 
     if (!session) {
         return <Carregando>Carregando...</Carregando>
     }
 
+    const filme = {
+        posterURL: "poster",
+        title: "title",
+        weekday: "weekday",
+        hour: "hour"
+
+    }
+
     return (
         <ScreenContainer>
             <h1>selecione os assentos</h1>
             <SeatsSpace>
-                assento1, 2,3,4,5,6
+                {session.seats.map(
+                    (s) => <SeatsCard seat={s} key={s.id} />
+                )}
             </SeatsSpace>
             <CircleContainer>
                 <IndividualCircle>
@@ -53,11 +56,11 @@ export default function Seats() {
                 </IndividualCircle>
             </CircleContainer>
             <Formulary>
-                Nome do Comprador:
-                <input />
-                CPF do Comprador:
-                <input />
-                <button>Reservar assentos</button>
+                    Nome do Comprador:
+                    <input name="name" placeholder="Digite o seu nome" type="text" />
+                    CPF do Comprador:
+                    <input name="cpf" placeholder="DIgite o seu cpf" type="number" />
+                    <button type="submit">Reservar assentos</button>
             </Formulary>
 
             <Footer movie={filme} />

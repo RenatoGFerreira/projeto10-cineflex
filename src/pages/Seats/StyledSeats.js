@@ -26,8 +26,12 @@ export const Carregando = styled.div`
 `
 
 export const SeatsSpace = styled.div`
-    border: 1px solid red;
     margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    max-width: 84%;
+    flex-wrap: wrap;
+    justify-content: center;
 `
 
 export const CircleContainer = styled.div`
@@ -60,5 +64,30 @@ export const Circle = styled.div`
 `
 
 export const Formulary = styled.div`
-    border: 1px solid blue;
+    padding: 5px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px 0;
+    button{
+        align-self: center;
+        color: #fff;
+        background-color: #E8833A;
+        height: 42px;
+        width: 225px;
+        border-radius: 3px;
+        margin: 10px 0;
+    }
+    input{
+        height: 30px;
+        width: 100%;
+        font-size: 18px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+
+        box-sizing: border-box;
+        border-color: #D5D5D5;
+    }
+
 `
