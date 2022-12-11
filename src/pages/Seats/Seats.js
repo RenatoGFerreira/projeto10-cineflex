@@ -1,8 +1,21 @@
-import { ScreenContainer, SeatsSpace, Formulary, CircleContainer, Circle, IndividualCircle } from "./StyledSeats";
+import { ScreenContainer, SeatsSpace, Formulary, CircleContainer, Circle, IndividualCircle, Carregando } from "./StyledSeats";
 import Footer from "../../components/Footer/Footer";
 import imagem from "../../assets/exemplo.jpg"
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Seats() {
+
+    const { idSessao } = useParams()
+    const [session, setSession] = useState(null)
+
+    useEffect(() => {
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`)
+        promise.then(res => setSession(res.data))
+        promise.catch(err => console.log(err.response.data))
+
+    }, [])
 
     const filme = {
         weekday: "Segunda-Feira",
@@ -10,6 +23,13 @@ export default function Seats() {
         showtimes: [{ name: "01:00" }, { name: "02:00" }, { name: "06:00" }],
         posterURL: { imagem },
         title: "Shrek"
+    }
+
+    console.log(session)
+
+
+    if (!session) {
+        return <Carregando>Carregando...</Carregando>
     }
 
     return (
@@ -20,15 +40,15 @@ export default function Seats() {
             </SeatsSpace>
             <CircleContainer>
                 <IndividualCircle>
-                    <Circle /> 
+                    <Circle />
                     Selecionado
                 </IndividualCircle>
                 <IndividualCircle>
-                    <Circle /> 
+                    <Circle />
                     Disponível
                 </IndividualCircle>
                 <IndividualCircle>
-                    <Circle /> 
+                    <Circle />
                     Indisponível
                 </IndividualCircle>
             </CircleContainer>
