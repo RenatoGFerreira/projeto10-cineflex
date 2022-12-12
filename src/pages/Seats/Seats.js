@@ -1,4 +1,4 @@
-import { ScreenContainer, SeatsSpace, Formulary, CircleContainer, Circle, IndividualCircle, Carregando } from "./StyledSeats";
+import { ScreenContainer, SeatsSpace, Form, CircleContainer, Circle, IndividualCircle, Carregando } from "./StyledSeats";
 import Footer from "../../components/Footer/Footer";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ export default function Seats() {
     const { idSessao } = useParams()
     const [session, setSession] = useState(null)
     const [selecionados, setSelecionados] = useState([])
+    const [form, setForm] = useState({ name: "", cpf: "" })
 
 
     useEffect(() => {
@@ -18,7 +19,7 @@ export default function Seats() {
         promise.then(res => setSession(res.data))
         promise.catch(err => console.log(err.response.data))
 
-    }, [])
+    }, [idSessao])
 
     function addSelecionados(seat) {
         if (seat.isAvailable === false) {
@@ -35,11 +36,29 @@ export default function Seats() {
         }
     }
 
-    console.log(selecionados)
-
-
+   
     if (!session) {
         return <Carregando>Carregando...</Carregando>
+    }
+
+
+    function formulary(event){
+        const {name, value} = event.target
+        setForm({...form, [name]:value})
+    }
+
+    function buyerTickets(event){
+        alert("foi")
+        event.preventDefault()
+        console.log(selecionados)
+
+        const body = {
+            ids: selecionados.map((s) => s.id),
+            ...form
+        }  
+
+        console.log(body)
+
     }
 
     const filme = {
@@ -47,7 +66,6 @@ export default function Seats() {
         title: "title",
         weekday: "weekday",
         hour: "hour"
-
     }
 
     return (
@@ -65,25 +83,26 @@ export default function Seats() {
             </SeatsSpace>
             <CircleContainer>
                 <IndividualCircle>
-                    <Circle />
+                    <Circle status={"selected"} />
                     Selecionado
                 </IndividualCircle>
                 <IndividualCircle>
-                    <Circle />
+                    <Circle status={"available"} />
                     Disponível
                 </IndividualCircle>
                 <IndividualCircle>
-                    <Circle />
+                    <Circle status={"unavailable"} />
                     Indisponível
                 </IndividualCircle>
             </CircleContainer>
-            <Formulary>
+
+            <Form onSubmit={buyerTickets}>
                 Nome do Comprador:
-                <input name="name" placeholder="Digite o seu nome" type="text" />
+                <input name="name" placeholder="Digite o seu nome" type="text" value={form.name} onChange={formulary} />
                 CPF do Comprador:
-                <input name="cpf" placeholder="DIgite o seu cpf" type="number" />
+                <input name="cpf" placeholder="Digite o seu cpf" type="number" value={form.cpf} onChange={formulary} />
                 <button type="submit">Reservar assentos</button>
-            </Formulary>
+            </Form>
 
             <Footer movie={filme} />
         </ScreenContainer>

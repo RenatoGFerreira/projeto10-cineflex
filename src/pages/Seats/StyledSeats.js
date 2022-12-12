@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { seatColors } from "../../constants/seatColors"
 
 export const ScreenContainer = styled.div`
     display: flex;
@@ -52,8 +53,8 @@ export const IndividualCircle = styled.div`
 `
 
 export const Circle = styled.div`
-    border: 1px solid black;
-    background-color: black;
+    border: 1px solid ${props => seatColors[props.status].border};
+    background-color: ${props => seatColors[props.status].background};
     height: 25px;
     width: 25px;
     border-radius: 25px;
@@ -63,7 +64,7 @@ export const Circle = styled.div`
     margin: 5px 3px;
 `
 
-export const Formulary = styled.div`
+export const Form = styled.div`
     padding: 5px;
     width: 80%;
     display: flex;
