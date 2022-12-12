@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import SeatsCard from "../../components/SeatsCard/SeatsCard";
 
+
 export default function Seats() {
 
     const { idSessao } = useParams()
     const [session, setSession] = useState(null)
+    const [selecionados, setSelecionados] = useState([])
 
 
     useEffect(() => {
@@ -18,7 +20,22 @@ export default function Seats() {
 
     }, [])
 
+    function addSelecionados(seat) {
+        if (seat.isAvailable === false) {
+            alert("Esse assento não está disponível")
+        } else {
+            const inList = selecionados.some(s => seat.id === s.id)
 
+            if (inList) {
+                const newList = selecionados.filter(s => seat.id !== s.id)
+                setSelecionados(newList)
+            } else {
+                setSelecionados([...selecionados, seat])
+            }
+        }
+    }
+
+    console.log(selecionados)
 
 
     if (!session) {
@@ -38,7 +55,12 @@ export default function Seats() {
             <h1>selecione os assentos</h1>
             <SeatsSpace>
                 {session.seats.map(
-                    (s) => <SeatsCard seat={s} key={s.id} />
+                    (seat) => <SeatsCard
+                        seat={seat}
+                        key={seat.id}
+                        addSelecionados={addSelecionados}
+                        selecionados={selecionados.some(s => seat.id === s.id)}
+                    />
                 )}
             </SeatsSpace>
             <CircleContainer>
@@ -56,11 +78,11 @@ export default function Seats() {
                 </IndividualCircle>
             </CircleContainer>
             <Formulary>
-                    Nome do Comprador:
-                    <input name="name" placeholder="Digite o seu nome" type="text" />
-                    CPF do Comprador:
-                    <input name="cpf" placeholder="DIgite o seu cpf" type="number" />
-                    <button type="submit">Reservar assentos</button>
+                Nome do Comprador:
+                <input name="name" placeholder="Digite o seu nome" type="text" />
+                CPF do Comprador:
+                <input name="cpf" placeholder="DIgite o seu cpf" type="number" />
+                <button type="submit">Reservar assentos</button>
             </Formulary>
 
             <Footer movie={filme} />
