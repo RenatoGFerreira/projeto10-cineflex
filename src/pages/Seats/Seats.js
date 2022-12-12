@@ -1,6 +1,6 @@
-import { ScreenContainer, SeatsSpace, Form, CircleContainer, Circle, IndividualCircle, Carregando } from "./StyledSeats";
+import { ScreenContainer, SeatsSpace, CircleContainer, Form, Circle, IndividualCircle, Carregando } from "./StyledSeats";
 import Footer from "../../components/Footer/Footer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SeatsCard from "../../components/SeatsCard/SeatsCard";
@@ -12,6 +12,7 @@ export default function Seats() {
     const [session, setSession] = useState(null)
     const [selecionados, setSelecionados] = useState([])
     const [form, setForm] = useState({ name: "", cpf: "" })
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -36,28 +37,36 @@ export default function Seats() {
         }
     }
 
-   
+
     if (!session) {
         return <Carregando>Carregando...</Carregando>
     }
 
 
-    function formulary(event){
-        const {name, value} = event.target
-        setForm({...form, [name]:value})
+    function formulary(event) {
+        const { name, value } = event.target
+        setForm({ ...form, [name]: value })
     }
 
-    function buyerTickets(event){
-        alert("foi")
+    function buyerTickets(event) {
+
         event.preventDefault()
-        console.log(selecionados)
 
         const body = {
-            ids: selecionados.map((s) => s.id),
+            ids: selecionados.map(s => s.id),
             ...form
-        }  
+        }
 
         console.log(body)
+
+        const promise = axios.post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`)
+
+        promise.then(res => {
+            console.log("SUcesso querido")
+            navigate("/sucesso")
+        })
+        promise.catch(err => console.log(err.response.data))
+
 
     }
 
@@ -96,12 +105,26 @@ export default function Seats() {
                 </IndividualCircle>
             </CircleContainer>
 
+
             <Form onSubmit={buyerTickets}>
                 Nome do Comprador:
-                <input name="name" placeholder="Digite o seu nome" type="text" value={form.name} onChange={formulary} />
+                <input
+                    name="name"
+                    value={form.name}
+                    onChange={formulary}
+                    placeholder="Digite seu nome"
+                    type="text"
+                />
+
                 CPF do Comprador:
-                <input name="cpf" placeholder="Digite o seu cpf" type="number" value={form.cpf} onChange={formulary} />
-                <button type="submit">Reservar assentos</button>
+                <input
+                    name="cpf"
+                    value={form.cpf}
+                    onChange={formulary}
+                    placeholder="Digite seu CPF"
+                    type="number"
+                />
+                <button type="submit">Reservar Assento(s)</button>
             </Form>
 
             <Footer movie={filme} />

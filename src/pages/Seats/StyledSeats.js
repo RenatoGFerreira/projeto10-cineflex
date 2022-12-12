@@ -79,6 +79,7 @@ export const Form = styled.div`
         width: 225px;
         border-radius: 3px;
         margin: 10px 0;
+        font-size: 16px;
     }
     input{
         height: 30px;
