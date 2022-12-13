@@ -95,6 +95,7 @@ export default function Seats({setSuccessBuy}) {
                         key={seat.id}
                         addSelecionados={addSelecionados}
                         selecionados={selecionados.some(s => seat.id === s.id)}
+                        data-test="seat"
                     />
                 )}
             </SeatsSpace>
@@ -117,13 +118,13 @@ export default function Seats({setSuccessBuy}) {
             <Form onSubmit={buyerTickets}>
 
                 <label> Nome do Comprador:
-                <input type="text" name="name" value={form.name} onChange={formulary} placeholder="DIgite seu nome"/>
+                <input type="text" name="name" value={form.name} onChange={formulary} placeholder="Digite seu nome" data-test="client-name"/>
                 </label>
                 <label> CPF do Comprador:
-                <input type="number" name="cpf" value={form.cpf} onChange={formulary} placeholder="DIgite seu cpf"/>
+                <input type="number" name="cpf" value={form.cpf} onChange={formulary} placeholder="Digite seu cpf" data-test="client-cpf"/>
                 </label>
 
-                <button onClick={()=>{buyerTickets()}} type="submit">Reservar Assentos</button>
+                <button onClick={()=>{buyerTickets()}} type="submit" data-test="book-seat-btn">Reservar Assentos</button>
             </Form>
 
             <Footer title={session.movie.title} poster={session.movie.posterURL} weekday={session.day.weekday} hour={session.name} />

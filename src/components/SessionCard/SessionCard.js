@@ -10,7 +10,7 @@ export default function SessionCard({ movie }) {
 
             <ButtonHorario>
                 {showtimes.map((i) => (
-                    <Link to={`/assentos/${i.id}`} key={i.name}>
+                    <Link to={`/assentos/${i.id}`} key={i.name} data-test="showtime">
                         <button>{i.name}</button>
                     </Link>
                 ))}
