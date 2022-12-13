@@ -6,7 +6,7 @@ import axios from "axios";
 import SeatsCard from "../../components/SeatsCard/SeatsCard";
 
 
-export default function Seats() {
+export default function Seats({setSuccessBuy}) {
 
     const { idSessao } = useParams()
     const [session, setSession] = useState(null)
@@ -15,6 +15,37 @@ export default function Seats() {
     const navigate = useNavigate()
 
 
+    function formulary(e) {
+        const { name, value } = e.target
+        setForm({ ...form, [name]: value })
+    }
+
+    function buyerTickets() {
+        const body = {
+            ids: selecionados.map(s => s.id),
+            name: form.name,
+            cpf: form.cpf
+        }
+
+        const sucessoDaCompra = {
+            movie: session.movie.title,
+            date: session.day.date,
+            hour: session.name,
+            buyer: body.name,
+            cpf: body.cpf,
+            seats: selecionados.map(s => s.name)
+        }
+
+        axios.post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`, body)
+                    .then( res=>{
+                        console.log("Sucesso meu querido")
+                        navigate("/sucesso")
+                        setSuccessBuy(sucessoDaCompra)
+                    })
+                    .catch(err => console.log(err.response.data))
+    }
+    
+
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`)
         promise.then(res => setSession(res.data))
@@ -22,6 +53,7 @@ export default function Seats() {
 
     }, [idSessao])
 
+    
     function addSelecionados(seat) {
         if (seat.isAvailable === false) {
             alert("Esse assento não está disponível")
@@ -42,33 +74,7 @@ export default function Seats() {
         return <Carregando>Carregando...</Carregando>
     }
 
-
-    function formulary(event) {
-        const { name, value } = event.target
-        setForm({ ...form, [name]: value })
-    }
-
-    function buyerTickets(event) {
-
-        event.preventDefault()
-
-        const body = {
-            ids: selecionados.map(s => s.id),
-            ...form
-        }
-
-        console.log(body)
-
-        const promise = axios.post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`)
-
-        promise.then(res => {
-            console.log("SUcesso querido")
-            navigate("/sucesso")
-        })
-        promise.catch(err => console.log(err.response.data))
-
-
-    }
+    
 
     const filme = {
         posterURL: "poster",
@@ -76,6 +82,8 @@ export default function Seats() {
         weekday: "weekday",
         hour: "hour"
     }
+
+    console.log(session)
 
     return (
         <ScreenContainer>
@@ -107,27 +115,19 @@ export default function Seats() {
 
 
             <Form onSubmit={buyerTickets}>
-                Nome do Comprador:
-                <input
-                    name="name"
-                    value={form.name}
-                    onChange={formulary}
-                    placeholder="Digite seu nome"
-                    type="text"
-                />
 
-                CPF do Comprador:
-                <input
-                    name="cpf"
-                    value={form.cpf}
-                    onChange={formulary}
-                    placeholder="Digite seu CPF"
-                    type="number"
-                />
-                <button type="submit">Reservar Assento(s)</button>
+                <label> Nome do Comprador:
+                <input type="text" name="name" value={form.name} onChange={formulary} placeholder="DIgite seu nome"/>
+                </label>
+                <label> CPF do Comprador:
+                <input type="number" name="cpf" value={form.cpf} onChange={formulary} placeholder="DIgite seu cpf"/>
+                </label>
+
+                <button onClick={()=>{buyerTickets()}} type="submit">Reservar Assentos</button>
             </Form>
 
-            <Footer movie={filme} />
+            <Footer title={session.movie.title} poster={session.movie.posterURL} weekday={session.day.weekday} hour={session.name} />
         </ScreenContainer>
     )
 }
+

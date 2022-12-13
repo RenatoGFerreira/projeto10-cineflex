@@ -29,7 +29,7 @@ export default function Sessions() {
             <ListContainer>
                 {movie.days.map((filme) => <SessionCard key={filme.id} movie={filme} />)}
             </ListContainer>
-            <Footer movie={movie} />
+            <Footer poster={movie.posterURL} title={movie.title} />
         </ScreenContainer>
     )
 }

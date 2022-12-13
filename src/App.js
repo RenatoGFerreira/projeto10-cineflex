@@ -5,8 +5,11 @@ import Home from "./pages/Home/Home"
 import Sessions from "./pages/Sessions/Sessions"
 import Seats from "./pages/Seats/Seats"
 import Success from "./pages/Success/Success"
+import { useState } from "react"
 
 export default function App() {
+
+  const [successBuy, setSuccessBuy] = useState({})
   return (
     <BrowserRouter>
       <GlobalStyle/>
@@ -14,8 +17,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/sessoes/:idFilme" element={<Sessions/>}/>
-        <Route path="/assentos/:idSessao" element={<Seats/>}/>
-        <Route path="/sucesso" element={<Success/>}/>
+        <Route path="/assentos/:idSessao" element={<Seats setSuccessBuy={setSuccessBuy}/>}/>
+        <Route path="/sucesso" element={<Success successBuy={successBuy}/>}/>
       </Routes>
     </BrowserRouter>
   )
