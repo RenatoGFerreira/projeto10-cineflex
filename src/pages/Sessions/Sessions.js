@@ -26,8 +26,8 @@ export default function Sessions() {
     return (
         <ScreenContainer>
             <h1>selecione o horário</h1>
-            <ListContainer>
-                {movie.days.map((filme) => <SessionCard data-test="movie-day" key={filme.id} movie={filme} />)}
+            <ListContainer data-test="movie-day">
+                {movie.days.map((filme) => <SessionCard key={filme.id} movie={filme} />)}
             </ListContainer>
             <Footer poster={movie.posterURL} title={movie.title} />
         </ScreenContainer>
