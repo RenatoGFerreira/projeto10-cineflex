@@ -3,13 +3,13 @@ import { ScreenContainer, Poster, Title } from "./StyleFooter"
 export default function Footer({ title, poster, weekday, hour}){
 
     return(
-        <ScreenContainer data-test="footer">
+        <ScreenContainer >
             <Poster>
-                <img  src={poster} alt={`Poster do filme ${title}`}/>
+                <img data-test="footer" src={poster} alt={`Poster do filme ${title}`}/>
             </Poster>
             <Title>
-            <p>{title}</p>
-            <p>{weekday} - {hour}</p>
+            <p data-test="footer">{title}</p>
+            <p data-test="footer">{weekday} - {hour}</p>
             </Title>    
         </ScreenContainer>
     )

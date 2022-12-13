@@ -6,12 +6,12 @@ export default function SessionCard({ movie }) {
     const { weekday, date, showtimes } = movie
     return (
         <ScreenContainer>
-            <h1>{weekday} - {date}</h1>
+            <h1 data-test="movie-day">{weekday} - {date}</h1>
 
             <ButtonHorario>
                 {showtimes.map((i) => (
-                    <Link to={`/assentos/${i.id}`} key={i.name} data-test="showtime">
-                        <button>{i.name}</button>
+                    <Link to={`/assentos/${i.id}`} key={i.name}>
+                        <button data-test="showtime">{i.name}</button>
                     </Link>
                 ))}
             </ButtonHorario>

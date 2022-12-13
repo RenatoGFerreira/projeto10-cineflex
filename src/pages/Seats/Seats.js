@@ -117,11 +117,11 @@ export default function Seats({setSuccessBuy}) {
 
             <Form onSubmit={buyerTickets}>
 
-                <label> Nome do Comprador:
-                <input type="text" name="name" value={form.name} onChange={formulary} placeholder="Digite seu nome" data-test="client-name"/>
+                <label data-test="client-name"> Nome do Comprador:
+                <input type="text" name="name" value={form.name} onChange={formulary} placeholder="Digite seu nome" />
                 </label>
-                <label> CPF do Comprador:
-                <input type="number" name="cpf" value={form.cpf} onChange={formulary} placeholder="Digite seu cpf" data-test="client-cpf"/>
+                <label data-test="client-cpf"> CPF do Comprador:
+                <input type="number" name="cpf" value={form.cpf} onChange={formulary} placeholder="Digite seu cpf" />
                 </label>
 
                 <button onClick={()=>{buyerTickets()}} type="submit" data-test="book-seat-btn">Reservar Assentos</button>

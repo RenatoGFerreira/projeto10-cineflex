@@ -10,24 +10,24 @@ export default function Success({successBuy}) {
 
         <ScreenContainer>
             <span>Pedido Feito com Sucesso!</span>
-            <TextContainer data-test="movie-info">
+            <TextContainer >
                 <h1>Filme e Sessão</h1>
-                <p>{movie}</p>
-                <p>{date}- {hour}</p>
+                <p data-test="movie-info">{movie}</p>
+                <p data-test="movie-info">{date}- {hour}</p>
             </TextContainer>
-            <TextContainer data-test="seats-info">
+            <TextContainer >
                 <h1>Ingressos</h1>
-                {seats.map((s) => <p key={s}> Poltrona: {s}</p>)}
+                {seats.map((s) => <p key={s} data-test="seats-info"> Poltrona: {s}</p>)}
                
             </TextContainer>
-            <TextContainer data-test="client-info">
+            <TextContainer>
                 <h1>Comprador</h1>
-                <p>Nome: {buyer}</p>
-                <p>cpf: {cpf}</p>
+                <p data-test="client-info">Nome: {buyer}</p>
+                <p data-test="client-info">cpf: {cpf}</p>
             </TextContainer>
             <ButtonContainer>
-                <Link to="/" data-test="go-home-btn">
-                    <button>Voltar para Home</button>
+                <Link to="/" >
+                    <button data-test="go-home-btn">Voltar para Home</button>
                 </Link>
             </ButtonContainer>
         </ScreenContainer>
